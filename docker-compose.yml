@@ -1,0 +1,31 @@
+---
+volumes:
+  caddy_data: {}
+
+networks:
+  caddy:
+    name: caddy
+    driver: bridge
+
+services:
+  caddy:
+    image: mafrosis/caddy
+    build:
+      context: .
+    restart: unless-stopped
+    environment:
+      - CADDY_INGRESS_NETWORKS=caddy
+    env_file:
+      - .secrets
+    ports:
+      - 443:443
+    networks:
+      - caddy
+    extra_hosts:
+      ca.mafro.net: 192.168.1.198  # Caddy needs to reach internal CA
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - caddy_data:/data
+      - /home/mafro/.step/certs/root_ca.crt:/root/step_ca.crt:ro
+    labels:
+      caddy.email: dev@mafro.net
