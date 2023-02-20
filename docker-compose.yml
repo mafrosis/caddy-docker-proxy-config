@@ -29,3 +29,4 @@ services:
       - /home/mafro/.step/certs/root_ca.crt:/root/step_ca.crt:ro
     labels:
       caddy.email: dev@mafro.net
+      caddy.log.format: console  # Human readable, not JSON
