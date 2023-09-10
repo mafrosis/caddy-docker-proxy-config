@@ -23,6 +23,7 @@ services:
       - .secrets
     ports:
       - 443:443
+      - 2020:2020
     networks:
       - caddy
     extra_hosts:
