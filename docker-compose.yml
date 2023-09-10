@@ -12,6 +12,10 @@ services:
     image: mafrosis/caddy
     build:
       context: .
+      args:
+        CADDY_DOCKER_TAG: ${CADDY_DOCKER_TAG}
+        CADDY_DOCKER_PROXY_PLUGIN: ${CADDY_DOCKER_PROXY_PLUGIN}
+        CADDY_GANDI_PLUGIN: ${CADDY_GANDI_PLUGIN}
     restart: unless-stopped
     environment:
       - CADDY_INGRESS_NETWORKS=caddy
