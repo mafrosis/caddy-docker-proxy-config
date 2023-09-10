@@ -36,3 +36,4 @@ services:
     labels:
       caddy.email: dev@mafro.net
       caddy.log.format: console  # Human readable, not JSON
+      #caddy.log.level: debug
