@@ -7,7 +7,8 @@ ARG CADDY_GANDI_PLUGIN
 
 RUN xcaddy build \
 	--with "github.com/lucaslorentz/caddy-docker-proxy/v2@${CADDY_DOCKER_PROXY_PLUGIN}" \
-	--with "github.com/caddy-dns/gandi@${CADDY_GANDI_PLUGIN}"
+	--with "github.com/caddy-dns/gandi@${CADDY_GANDI_PLUGIN}" \
+	--with "github.com/tailscale/caddy-tailscale"
 
 
 FROM caddy:${CADDY_DOCKER_TAG}-alpine
