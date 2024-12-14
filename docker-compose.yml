@@ -19,6 +19,8 @@ services:
     restart: unless-stopped
     environment:
       - CADDY_INGRESS_NETWORKS=caddy
+    security_opt:
+      - label=disable  # Required for Caddy to access Docker socket under podman
     env_file:
       - .secrets
     ports:
@@ -29,7 +31,7 @@ services:
     extra_hosts:
       - ca.mafro.net:192.168.1.198  # Caddy needs to reach internal CA
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - $XDG_RUNTIME_DIR/podman/podman.sock:/var/run/docker.sock
       - caddy_data:/data
       - $HOME/.step/certs/root_ca.crt:/root/step_ca.crt:ro  # Referenced by containers using the proxy
       - $HOME/.step/certs/root_ca.crt:/etc/ssl/certs/step_ca.crt:ro  # Local trust for Step CA
