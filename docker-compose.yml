@@ -27,12 +27,12 @@ services:
     networks:
       - caddy
     extra_hosts:
-      ca.mafro.net: 192.168.1.198  # Caddy needs to reach internal CA
+      - ca.mafro.net:192.168.1.198  # Caddy needs to reach internal CA
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - caddy_data:/data
-      - /home/mafro/.step/certs/root_ca.crt:/root/step_ca.crt:ro  # Referenced by containers using the proxy
-      - /home/mafro/.step/certs/root_ca.crt:/etc/ssl/certs/step_ca.crt:ro  # Local trust for Step CA
+      - $HOME/.step/certs/root_ca.crt:/root/step_ca.crt:ro  # Referenced by containers using the proxy
+      - $HOME/.step/certs/root_ca.crt:/etc/ssl/certs/step_ca.crt:ro  # Local trust for Step CA
     labels:
       caddy.email: dev@mafro.net
       caddy.log.format: console  # Human readable, not JSON
