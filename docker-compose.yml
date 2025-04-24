@@ -19,6 +19,7 @@ services:
     restart: unless-stopped
     environment:
       - CADDY_INGRESS_NETWORKS=caddy
+      - CADDY_DOCKER_CADDYFILE_PATH=/Caddyfile
     env_file:
       - .secrets
     ports:
@@ -31,6 +32,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - caddy_data:/data
+      - ./Caddyfile:/Caddyfile:ro  # Base Caddyfile extended by docker-proxy
       - $HOME/.step/certs/root_ca.crt:/root/step_ca.crt:ro  # Referenced by containers using the proxy
       - $HOME/.step/certs/root_ca.crt:/etc/ssl/certs/step_ca.crt:ro  # Local trust for Step CA
     labels:
