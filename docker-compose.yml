@@ -28,7 +28,7 @@ services:
     networks:
       - caddy
     extra_hosts:
-      - ca.mafro.net:192.168.1.198  # Caddy needs to reach internal CA
+      ca.mafro.net: 192.168.1.198  # Caddy needs to reach internal CA
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - caddy_data:/data
