@@ -49,3 +49,14 @@ roborock.mafro.net:443 {
 		transport http
 	}
 }
+
+# Static 301 to Github
+bootstrap.mafro.net:443 {
+	tls {
+		dns gandi {env.GANDI_API_TOKEN}
+	}
+	log {
+		output stdout
+	}
+	redir https://raw.githubusercontent.com/mafrosis/dotfiles/refs/heads/master/init
+}
