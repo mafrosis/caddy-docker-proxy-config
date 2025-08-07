@@ -12,6 +12,7 @@ services:
     image: mafrosis/caddy
     build:
       context: .
+      target: ${BUILD_TARGET:-caddy}
       args:
         CADDY_DOCKER_TAG: ${CADDY_DOCKER_TAG}
         CADDY_DOCKER_PROXY_PLUGIN: ${CADDY_DOCKER_PROXY_PLUGIN}
