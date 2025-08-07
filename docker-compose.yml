@@ -32,8 +32,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - caddy_data:/data
-      - $HOME/.step/certs/root_ca.crt:/root/step_ca.crt:ro  # Referenced by containers using the proxy
-      - $HOME/.step/certs/root_ca.crt:/etc/ssl/certs/step_ca.crt:ro  # Local trust for Step CA
+      - /etc/step_root_ca.crt:/root/step_ca.crt:ro  # Referenced by containers using the proxy
+      - /etc/step_root_ca.crt:/etc/ssl/certs/step_ca.crt:ro  # Local trust for Step CA
     labels:
       caddy.email: dev@mafro.net
       caddy.log.format: console  # Human readable, not JSON
