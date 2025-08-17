@@ -1,5 +1,10 @@
 {
 	email dev@mafro.net
+
+	tailscale {
+		ephemeral
+		state_dir /ts
+	}
 }
 
 # Static reverse proxy to non-docker endpoint
@@ -25,7 +30,7 @@ unifi.ts.mafro.net:443 {
 			tls_insecure_skip_verify
 		}
 	}
-	bind tailscale/caddy
+	bind tailscale/locke
 }
 
 # Reverse proxy to cupcake immich
