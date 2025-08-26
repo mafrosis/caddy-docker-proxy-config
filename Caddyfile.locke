@@ -1,46 +1,5 @@
 {
 	email dev@mafro.net
-
-	tailscale {
-		ephemeral
-		state_dir /ts
-	}
-}
-
-# Reverse proxy to Unifi UCG router control panel
-unifi.mafro.net:443 {
-	tls {
-		dns gandi {env.GANDI_API_TOKEN}
-	}
-	reverse_proxy 192.168.1.1:443 {
-		transport http {
-			tls
-			tls_insecure_skip_verify
-		}
-	}
-	bind 0.0.0.0 tailscale/locke
-}
-
-# Reverse proxy to cupcake immich
-of.mafro.net:443 {
-	tls {
-		ca https://ca.mafro.net:4433/acme/acme/directory
-		ca_root /root/step_ca.crt
-	}
-	reverse_proxy 192.168.1.182:2283 {
-		transport http
-	}
-}
-
-# Reverse proxy to Roborock vacuum
-roborock.mafro.net:443 {
-	tls {
-		ca https://ca.mafro.net:4433/acme/acme/directory
-		ca_root /root/step_ca.crt
-	}
-	reverse_proxy 192.168.20.159:80 {
-		transport http
-	}
 }
 
 # Static 301 to Github
