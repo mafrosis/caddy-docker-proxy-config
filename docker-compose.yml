@@ -7,6 +7,11 @@ networks:
   caddy:
     name: caddy
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.2.0/24     # Static range for Caddy network
+          gateway: 172.16.2.1
+          ip_range: 172.16.2.128/25 # Upper half of range for DHCP
 
 services:
   caddy:
@@ -28,7 +33,8 @@ services:
     ports:
       - 443:443
     networks:
-      - caddy
+      caddy:
+        ipv4_address: 172.16.2.2  # Static IP for the caddy server
     extra_hosts:
       ca.mafro.net: 192.168.1.198  # Caddy needs to reach internal CA
     volumes:
