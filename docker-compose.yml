@@ -10,7 +10,7 @@ networks:
 
 services:
   caddy:
-    image: mafrosis/caddy
+    image: mafrosis/caddy:${CADDY_DOCKER_TAG}
     build:
       context: .
       target: ${BUILD_TARGET:-caddy}
