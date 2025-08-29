@@ -1,3 +1,8 @@
+.PHONY: up
+up:
+	docker compose -f docker-compose.yml -f docker-compose.$$(hostname).yml up -d
+
+
 .PHONY: build
 build:
 	BUILD_TARGET=caddy \

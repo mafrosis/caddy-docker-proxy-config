@@ -1,0 +1,8 @@
+---
+services:
+  caddy:
+    volumes:
+      - /media/download/rtorrent:/share/rtorrent
+      - /media/zpool/tv/video/F1:/share/f1
+      - /media/zpool/tv/tv:/share/tv
+      - /media/zpool/tv/video/_:/share/x
